@@ -8,13 +8,31 @@ def oneRequest(chlid):
 	response = urllib.request.urlopen(url)
 	result = response.read().decode('utf-8')
 	response.close()
-	try:
-		jsonData = json.loads(result)
-		name = jsonData["channelInfo"]["chlname"]
-		subCount = jsonData["channelInfo"]["subCount"]
-		print(name+","+str(subCount))
-	except Exception as err:
-		print(chlid+" invalid")
+	
+	jsonData = json.loads(result)
+	ret = jsonData["ret"]
+	if(ret == 0):
+		jsonChannel = jsonData["channelInfo"]
+		
+		chlid = jsonChannel["chlid"]
+		chlname = jsonChannel["chlname"]
+		icon = jsonChannel["icon"]
+		sicon = jsonChannel["sicon"]
+		desc = jsonChannel["desc"]
+		subCount = jsonChannel["subCount"]
+		keywords = jsonChannel["keywords"]
+		uin = jsonChannel["uin"]
+		intro = jsonChannel["intro"]
+		recommend = jsonChannel["recommend"]
+		wechat = ""
+		try:
+			wechat = jsonChannel["wechat"]
+		except Exception as err:
+			return
+		readCount = jsonChannel["readCount"]
+		shareCount = jsonChannel["shareCount"]
+		colCount = jsonChannel["colCount"]
+		print(chlid +","+chlname+","+str(subCount))
 
 index = 1
 while index < 100000:
