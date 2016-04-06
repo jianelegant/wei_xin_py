@@ -1,6 +1,8 @@
 import sqlite3
 import account
 
+DB_NAME = "wechat.db"
+
 TABLE_NAME = "publicAccount"
 COLUMN_NAME_CHLID = "chlid"
 COLUMN_NAME_CHLNAME = "chlname"
@@ -18,7 +20,7 @@ COLUMN_NAME_SHARECOUNT = "shareCount"
 COLUMN_NAME_COLCOUNT = "colCount"
 
 def createDb():
-	conn = sqlite3.connect('wechat.db')
+	conn = sqlite3.connect(DB_NAME)
 
 	strCreate = "create table if not exists " + TABLE_NAME \
        + "(" + COLUMN_NAME_CHLID + " varchar primary key not null," \
@@ -43,7 +45,7 @@ def createDb():
 	conn.close()
 
 def insertDb(acct):
-	conn = sqlite3.connect('wechat.db')
+	conn = sqlite3.connect(DB_NAME)
 	
 	strInsert = "insert into " + TABLE_NAME \
 		+ "(" + COLUMN_NAME_CHLID + "," + COLUMN_NAME_CHLNAME +") values" \
@@ -53,9 +55,3 @@ def insertDb(acct):
 	
 	conn.commit()
 	conn.close()
-
-createDb()
-acct = account.Account()
-acct.chlid = "66"
-acct.chlname = "fuck"
-insertDb(acct)
