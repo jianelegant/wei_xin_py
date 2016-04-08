@@ -47,11 +47,22 @@ def createTable():
 def insertItem(acct):
 	conn = sqlite3.connect(DB_NAME)
 	
-	strInsert = "insert into " + TABLE_NAME \
-		+ "(" + COLUMN_NAME_CHLID + "," + COLUMN_NAME_CHLNAME +") values" \
-		+ "('"+acct.chlid+"','"+acct.chlname+"');"
-	print(strInsert)
+	strInsert = "insert into " + TABLE_NAME + " values('" \
+		+acct.chlid+"','" \
+		+acct.chlname+"','" \
+		+acct.icon+"','" \
+		+acct.sicon+"','" \
+		+acct.desc+"'," \
+		+str(acct.subCount)+",'" \
+		+acct.keywords+"','" \
+		+acct.uin+"','" \
+		+acct.intro+"','" \
+		+acct.recommend+"','" \
+		+acct.wechat+"'," \
+		+str(acct.readCount)+"," \
+		+str(acct.shareCount)+"," \
+		+str(acct.colCount)+");"
 	conn.execute(strInsert)
-	
+	print(acct.chlid)
 	conn.commit()
 	conn.close()
