@@ -1,5 +1,5 @@
 import sqlite3
-import account
+import accountbean
 
 DB_NAME = "wechat.db"
 
@@ -19,7 +19,7 @@ COLUMN_NAME_READCOUNT = "readCount"
 COLUMN_NAME_SHARECOUNT = "shareCount"
 COLUMN_NAME_COLCOUNT = "colCount"
 
-def createDb():
+def createTable():
 	conn = sqlite3.connect(DB_NAME)
 
 	strCreate = "create table if not exists " + TABLE_NAME \
@@ -44,7 +44,7 @@ def createDb():
 	conn.commit()
 	conn.close()
 
-def insertDb(acct):
+def insertItem(acct):
 	conn = sqlite3.connect(DB_NAME)
 	
 	strInsert = "insert into " + TABLE_NAME \
